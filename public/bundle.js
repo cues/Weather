@@ -25324,30 +25324,33 @@
 
 	var React = __webpack_require__(1);
 
-	var WeatherMessage = React.createClass({
-	  displayName: 'WeatherMessage',
+	// var WeatherMessage = React.createClass({
+	//
+	//   render: function () {
+	//     var {temp,location} = this.props;
+	//     return(
+	//       <div>
+	//         <h2>it is {temp} degrees  in {location}</h2>
+	//       </div>
+	//     );
+	//   }
+	// })
 
+	var WeatherMessage = function WeatherMessage(temp, location) {
 
-	  render: function render() {
-	    var _props = this.props;
-	    var temp = _props.temp;
-	    var location = _props.location;
-
-	    return React.createElement(
-	      'div',
+	  return React.createElement(
+	    'div',
+	    null,
+	    React.createElement(
+	      'h2',
 	      null,
-	      React.createElement(
-	        'h2',
-	        null,
-	        'it is ',
-	        temp,
-	        ' degrees  in ',
-	        location
-	      )
-	    );
-	  }
-	});
-
+	      'it is ',
+	      temp,
+	      ' degrees  in ',
+	      location
+	    )
+	  );
+	};
 	module.exports = WeatherMessage;
 
 /***/ },
@@ -26698,7 +26701,7 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      'Examples component'
+	      'Examples component !'
 	    );
 	  }
 	});
