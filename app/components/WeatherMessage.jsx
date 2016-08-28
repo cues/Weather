@@ -13,13 +13,4 @@ var WeatherMessage = React.createClass({
   }
 })
 
-// var WeatherMessage = (temp,location) => {
-//
-//   return(
-//     <div>
-//       <h2>it is {temp} degrees  in {location}</h2>
-//       <div>Whycis the temperature like this?</div>
-//     </div>
-//   );
-// }
 module.exports = WeatherMessage;
