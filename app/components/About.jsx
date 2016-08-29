@@ -1,5 +1,5 @@
 var React = require('react');
-// 
+//
 // var About = React.createClass({
 //   render: function () {
 //     return(
@@ -12,7 +12,11 @@ var React = require('react');
 
 var About = (props) => {
   return(
-    <h3>About component</h3>
+    <div className="">
+      <h1 className="text-center">ABOUT US</h1>
+      <p>This is a web app where you can check the weather for any location.</p>
+
+    </div>
   )
 };
 
