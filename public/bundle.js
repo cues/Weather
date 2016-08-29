@@ -25373,13 +25373,13 @@
 	      } else if (temp && location) {
 	        return React.createElement(WeatherMessage, { location: location, temp: temp });
 	      }
-	    };
+	    }
 
 	    function renderError() {
 	      if (typeof errorMessage === 'string') {
 	        return React.createElement(ErrorModal, { message: errorMessage });
 	      }
-	    };
+	    }
 
 	    return React.createElement(
 	      'div',
@@ -26796,8 +26796,8 @@
 	    };
 	  },
 	  propTypes: {
-	    title: React.propTypes.string,
-	    message: React.propTypes.string.isRequired
+	    title: React.PropTypes.string,
+	    message: React.PropTypes.string.isRequired
 	  },
 
 	  componentDidMount: function componentDidMount() {
