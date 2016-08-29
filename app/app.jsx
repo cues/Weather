@@ -20,9 +20,14 @@ var Examples = require('Examples');
 
 
 
-// Load foundatino
+// Load foundation
 require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();
+
+
+// load css
+require ('style!css!applicationStyles')
+
 
 ReactDOM.render(
   <Router history={hashHistory}>
