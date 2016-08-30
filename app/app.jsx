@@ -26,7 +26,7 @@ $(document).foundation();
 
 
 // load css
-require ('style!css!applicationStyles')
+require ('style!css!sass!applicationStyles')
 
 
 ReactDOM.render(

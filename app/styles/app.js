@@ -16,14 +16,17 @@ export default StyleSheet.create({
     },
     "input[type=search]": {
         "boxShadow": "none",
-        "borderRadius": 5
+        "borderRadius": 5,
+        "outline": "none"
     },
     "input[type=submit]": {
         "boxShadow": "none",
-        "borderRadius": 5
+        "borderRadius": 5,
+        "outline": "none"
     },
     "button-form": {
-        "borderRadius": 5
+        "borderRadius": 5,
+        "outline": "none"
     },
     "nav-search": {
         "maxWidth": "300px !important",

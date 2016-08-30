@@ -25504,6 +25504,8 @@
 
 	"use strict";
 
+	// https://www.reddit.com/r/FreeCodeCamp/comments/4con5s/how_do_i_use_the_icon_given_in_the_open_weather/
+
 	var React = __webpack_require__(8);
 
 	var WeatherMessage = React.createClass({
@@ -25522,69 +25524,65 @@
 	    var icons = "http://openweathermap.org/img/w/" + icon + ".png";
 	    return React.createElement(
 	      "div",
-	      null,
+	      { classNam: "weather font cursor-default" },
 	      React.createElement(
 	        "div",
-	        { classNam: "weather font " },
+	        { className: "weather-location text-center cursor-default" },
+	        location
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "weather-icon" },
+	        React.createElement("img", { className: "weather-image", src: icons })
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "weather-item cursor-default" },
 	        React.createElement(
 	          "div",
-	          { className: "weather-location text-center" },
-	          location
+	          { className: "weather-eachItem" },
+	          "Temperature"
 	        ),
 	        React.createElement(
 	          "div",
-	          { className: "weather-icon" },
-	          React.createElement("img", { className: "weather-image", src: icons })
+	          { className: "weather-eachItem" },
+	          "Description"
 	        ),
 	        React.createElement(
 	          "div",
-	          { className: "weather-item" },
-	          React.createElement(
-	            "div",
-	            { className: "weather-eachItem" },
-	            "Temperature"
-	          ),
-	          React.createElement(
-	            "div",
-	            { className: "weather-eachItem" },
-	            "Description"
-	          ),
-	          React.createElement(
-	            "div",
-	            { className: "weather-eachItem" },
-	            "Humidity"
-	          ),
-	          React.createElement(
-	            "div",
-	            { className: "weather-eachItem" },
-	            "Clouds"
-	          )
+	          { className: "weather-eachItem" },
+	          "Humidity"
 	        ),
 	        React.createElement(
 	          "div",
-	          { className: "weather-parameters" },
-	          React.createElement(
-	            "div",
-	            { className: "weather-eachParameters" },
-	            temp
-	          ),
-	          React.createElement(
-	            "div",
-	            { className: "weather-eachParameters" },
-	            description
-	          ),
-	          React.createElement(
-	            "div",
-	            { className: "weather-eachParameters" },
-	            humidity,
-	            "%"
-	          ),
-	          React.createElement(
-	            "div",
-	            { className: "weather-eachParameters" },
-	            clouds,
-	            "%"
-	          )
+	          { className: "weather-eachItem" },
+	          "Clouds"
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "weather-parameters cursor-default" },
+	        React.createElement(
+	          "div",
+	          { className: "weather-eachParameters" },
+	          temp
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "weather-eachParameters" },
+	          description
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "weather-eachParameters" },
+	          humidity,
+	          "%"
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "weather-eachParameters" },
+	          clouds,
+	          "%"
 	        )
 	      )
 	    );
@@ -27477,8 +27475,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./app.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./app.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./app.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./app.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -27496,7 +27494,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.cursor-default\n{\n  cursor: default;\n}\n\n.page-title\n{\n  margin-top: 30px;\n  margin-bottom: 30px;\n}\n\ninput[type=search], input[type=submit]\n{\n  box-shadow: none;\n  border-radius: 5px;\n}\n\n.button-form{\n  border-radius: 5px;\n}\n.nav-search\n{\n  max-width: 300px !important;\n  width: 300px\n}\n\n.font, .page-title\n{\n  font-family:'bitter';\n}\n\n.top-bar\n{\n  background-color: rgba(250,250,250,.8);\n  box-shadow: 0px 1px 4px 0px rgba(0,0,0,.6);\n\n}\n.top-bar ul\n{\n  background-color: transparent !important;\n}\n.row\n{\n  /*background-color: red;*/\n  height: calc(100vh - 60px);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n\n}\n\n\n\n.weather-location\n{\n  font-size: 30px;\n  text-transform:uppercase;\n}\n.weather-icon\n{\n  height: 70px;\n  display: flex;;\n  justify-content: center;\n  align-items: center;\n}\n.weather-image\n{\n  height: 60px;\n  width: 60px;\n}\n.weather-item, .weather-parameters\n{\n  float: left;\n  width: 50%;\n\n}\n.weather-eachItem, .weather-eachParameters\n{\n  height: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n", ""]);
+	exports.push([module.id, ".cursor-default {\n  cursor: default !important; }\n\n.page-title {\n  color: #eabf86;\n  margin-top: 30px;\n  margin-bottom: 30px; }\n\ninput[type=search], input[type=submit] {\n  box-shadow: none;\n  border-radius: 5px;\n  outline: none; }\n\n.button-form {\n  border-radius: 5px;\n  outline: none;\n  font-size: 22px;\n  height: 40px;\n  display: flex;\n  align-items: center !important;\n  padding: 0; }\n\n.nav-search {\n  max-width: 300px !important;\n  width: 300px; }\n\n.font, .page-title {\n  font-family: 'bitter'; }\n\n.top-bar {\n  background-color: rgba(250, 250, 250, 0.8);\n  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.6); }\n\n.top-bar ul {\n  background-color: transparent !important; }\n\n.row {\n  /*background-color: red;*/\n  height: calc(100vh - 60px);\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.weather-location {\n  font-size: 30px;\n  text-transform: uppercase; }\n\n.weather-icon {\n  height: 70px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n.weather-image {\n  height: 60px;\n  width: 60px; }\n\n.weather-item, .weather-parameters {\n  float: left;\n  width: 50%; }\n\n.weather-eachItem, .weather-eachParameters {\n  height: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n", ""]);
 
 	// exports
 
