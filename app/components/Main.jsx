@@ -4,7 +4,7 @@ var Nav = require('Nav');
 var Main = React.createClass({
   render : function(){
     return (
-      <div>
+      <div className="font">
         <Nav />
           <div className="row">
             <div className="columns medium-6 large-4 small-centered">

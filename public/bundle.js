@@ -25196,7 +25196,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'font' },
 	      React.createElement(Nav, null),
 	      React.createElement(
 	        'div',
@@ -25247,7 +25247,7 @@
 	          { className: 'menu' },
 	          React.createElement(
 	            'li',
-	            { className: 'menu-text' },
+	            { className: 'menu-text cursor-default' },
 	            'React Weather App'
 	          ),
 	          React.createElement(
@@ -25291,7 +25291,7 @@
 	            React.createElement(
 	              'li',
 	              null,
-	              React.createElement('input', { type: 'search', placeholder: 'Search weather by city name' })
+	              React.createElement('input', { type: 'search', placeholder: 'Search weather by city name', className: 'nav-search' })
 	            ),
 	            React.createElement(
 	              'li',
@@ -25350,6 +25350,58 @@
 	        errorMessage: e.message
 	      });
 	    });
+
+	    openWeatherMap.getHumidity(location).then(function (humidity) {
+	      that.setState({
+	        location: location,
+	        humidity: humidity,
+	        isLoading: false
+	      });
+	    }, function (e) {
+	      that.setState({
+	        isLoading: false,
+	        errorMessage: e.message
+	      });
+	    });
+
+	    openWeatherMap.getDescription(location).then(function (description) {
+	      that.setState({
+	        location: location,
+	        description: description,
+	        isLoading: false
+	      });
+	    }, function (e) {
+	      that.setState({
+	        isLoading: false,
+	        errorMessage: e.message
+	      });
+	    });
+
+	    openWeatherMap.getClouds(location).then(function (clouds) {
+	      that.setState({
+	        location: location,
+	        clouds: clouds,
+	        isLoading: false
+	      });
+	    }, function (e) {
+	      that.setState({
+	        isLoading: false,
+	        errorMessage: e.message
+	      });
+	    });
+
+	    openWeatherMap.getIcon(location).then(function (icon) {
+	      that.setState({
+	        location: location,
+	        icon: icon,
+	        isLoading: false
+	      });
+	    }, function (e) {
+	      that.setState({
+	        isLoading: false,
+	        errorMessage: e.message
+	      });
+	    });
 	    // this.setState({
 	    //   location : location,
 	    //   temp :23,
@@ -25360,6 +25412,10 @@
 	    var _state = this.state;
 	    var isLoading = _state.isLoading;
 	    var temp = _state.temp;
+	    var humidity = _state.humidity;
+	    var description = _state.description;
+	    var icon = _state.icon;
+	    var clouds = _state.clouds;
 	    var location = _state.location;
 	    var errorMessage = _state.errorMessage;
 	    // can also be written as below
@@ -25374,7 +25430,7 @@
 	          'Fetching Weather...'
 	        );
 	      } else if (temp && location) {
-	        return React.createElement(WeatherMessage, { location: location, temp: temp });
+	        return React.createElement(WeatherMessage, { location: location, temp: temp, humidity: humidity, description: description, icon: icon, clouds: clouds });
 	      }
 	    }
 
@@ -25389,7 +25445,7 @@
 	      null,
 	      React.createElement(
 	        'h1',
-	        { className: 'text-center page-title' },
+	        { className: 'text-center page-title font' },
 	        'WEATHER'
 	      ),
 	      React.createElement(WeatherForm, { onSearch: this.handleSearch }),
@@ -25425,14 +25481,14 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'font' },
 	      React.createElement(
 	        'form',
 	        { onSubmit: this.onFormSubmit },
 	        React.createElement('input', { type: 'search', ref: 'location', placeholder: 'Search weather by city name' }),
 	        React.createElement(
 	          'button',
-	          { className: 'button expanded hollow' },
+	          { className: 'button expanded hollow button-form' },
 	          'Get Weather'
 	        )
 	      )
@@ -25458,17 +25514,78 @@
 	    var _props = this.props;
 	    var temp = _props.temp;
 	    var location = _props.location;
+	    var humidity = _props.humidity;
+	    var description = _props.description;
+	    var icon = _props.icon;
+	    var clouds = _props.clouds;
 
+	    var icons = "http://openweathermap.org/img/w/" + icon + ".png";
 	    return React.createElement(
 	      "div",
 	      null,
 	      React.createElement(
-	        "h3",
-	        { className: "text-center" },
-	        "it is ",
-	        temp,
-	        " degrees  in ",
-	        location
+	        "div",
+	        { classNam: "weather font " },
+	        React.createElement(
+	          "div",
+	          { className: "weather-location text-center" },
+	          location
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "weather-icon" },
+	          React.createElement("img", { className: "weather-image", src: icons })
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "weather-item" },
+	          React.createElement(
+	            "div",
+	            { className: "weather-eachItem" },
+	            "Temperature"
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "weather-eachItem" },
+	            "Description"
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "weather-eachItem" },
+	            "Humidity"
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "weather-eachItem" },
+	            "Clouds"
+	          )
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "weather-parameters" },
+	          React.createElement(
+	            "div",
+	            { className: "weather-eachParameters" },
+	            temp
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "weather-eachParameters" },
+	            description
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "weather-eachParameters" },
+	            humidity,
+	            "%"
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "weather-eachParameters" },
+	            clouds,
+	            "%"
+	          )
+	        )
 	      )
 	    );
 	  }
@@ -25502,6 +25619,62 @@
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
+	    });
+	  },
+	  getHumidity: function getHumidity(location) {
+	    var encodedLocation = encodeURIComponent(location); /*this is going to properlly encode it to the browser*/
+	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /*every is executed as a regular jav script expression*/
+
+	    return axios.get(requestUrl).then(function (ress) {
+	      if (ress.data.cod && ress.data.message) {
+	        throw new Error(ress.data.message);
+	      } else {
+	        return ress.data.main.humidity;
+	      }
+	    }, function (ress) {
+	      throw new Error(ress.data.message);
+	    });
+	  },
+	  getDescription: function getDescription(location) {
+	    var encodedLocation = encodeURIComponent(location); /*this is going to properlly encode it to the browser*/
+	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /*every is executed as a regular jav script expression*/
+
+	    return axios.get(requestUrl).then(function (des) {
+	      if (des.data.cod && des.data.message) {
+	        throw new Error(des.data.message);
+	      } else {
+	        return des.data.weather[0].description;
+	      }
+	    }, function (des) {
+	      throw new Error(des.data.message);
+	    });
+	  },
+	  getClouds: function getClouds(location) {
+	    var encodedLocation = encodeURIComponent(location); /*this is going to properlly encode it to the browser*/
+	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /*every is executed as a regular jav script expression*/
+
+	    return axios.get(requestUrl).then(function (clo) {
+	      if (clo.data.cod && clo.data.message) {
+	        throw new Error(clo.data.message);
+	      } else {
+	        return clo.data.clouds.all;
+	      }
+	    }, function (clo) {
+	      throw new Error(clo.data.message);
+	    });
+	  },
+	  getIcon: function getIcon(location) {
+	    var encodedLocation = encodeURIComponent(location); /*this is going to properlly encode it to the browser*/
+	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /*every is executed as a regular jav script expression*/
+
+	    return axios.get(requestUrl).then(function (ico) {
+	      if (ico.data.cod && ico.data.message) {
+	        throw new Error(ico.data.message);
+	      } else {
+	        return ico.data.weather[0].icon;
+	      }
+	    }, function (ico) {
+	      throw new Error(ico.data.message);
 	    });
 	  }
 	};
@@ -26863,7 +27036,7 @@
 	var About = function About(props) {
 	  return React.createElement(
 	    "div",
-	    { className: "" },
+	    null,
 	    React.createElement(
 	      "h1",
 	      { className: "text-center page-title" },
@@ -26901,7 +27074,7 @@
 	      null,
 	      React.createElement(
 	        'h1',
-	        { className: 'text-center page-title' },
+	        { className: 'text-center page-title font' },
 	        'EXAMPLES'
 	      ),
 	      React.createElement(
@@ -27323,7 +27496,7 @@
 
 
 	// module
-	exports.push([module.id, ".page-title\n{\n  margin-top: 30px;\n  margin-bottom: 30px;\n}\n\ninput[type=search]\n{\n  box-shadow: none;\n}\n", ""]);
+	exports.push([module.id, "\n.cursor-default\n{\n  cursor: default;\n}\n\n.page-title\n{\n  margin-top: 30px;\n  margin-bottom: 30px;\n}\n\ninput[type=search], input[type=submit]\n{\n  box-shadow: none;\n  border-radius: 5px;\n}\n\n.button-form{\n  border-radius: 5px;\n}\n.nav-search\n{\n  max-width: 300px !important;\n  width: 300px\n}\n\n.font, .page-title\n{\n  font-family:'bitter';\n}\n\n.top-bar\n{\n  background-color: rgba(250,250,250,.8);\n  box-shadow: 0px 1px 4px 0px rgba(0,0,0,.6);\n\n}\n.top-bar ul\n{\n  background-color: transparent !important;\n}\n.row\n{\n  /*background-color: red;*/\n  height: calc(100vh - 60px);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n\n}\n\n\n\n.weather-location\n{\n  font-size: 30px;\n  text-transform:uppercase;\n}\n.weather-icon\n{\n  height: 70px;\n  display: flex;;\n  justify-content: center;\n  align-items: center;\n}\n.weather-image\n{\n  height: 60px;\n  width: 60px;\n}\n.weather-item, .weather-parameters\n{\n  float: left;\n  width: 50%;\n\n}\n.weather-eachItem, .weather-eachParameters\n{\n  height: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n", ""]);
 
 	// exports
 

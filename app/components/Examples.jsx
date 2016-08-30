@@ -4,10 +4,10 @@ var {Link} = require('react-router');
 var Examples = React.createClass({
   render: function () {
     return(
-      <div>
-        <h1 className="text-center page-title">EXAMPLES</h1>
+      <div >
+        <h1 className="text-center page-title font">EXAMPLES</h1>
         <div><p>Here are a few exmaples</p></div>
-        <ol>
+        <ol >
           <li>
             <Link to="/?Location=Verem,Goa">Verem, Goa</Link>
           </li>
