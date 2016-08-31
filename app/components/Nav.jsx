@@ -19,20 +19,21 @@ var Nav = React.createClass({
     return(
       <div className="top-bar">
         <div className="top-bar-left">
-          <ul className="menu">
-            <li className="menu-text cursor-default">
+          <div className="menu">
+            <div className="menu-text cursor-default app-name">
               React Weather App
-            </li>
-            <li>
-              <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight:'bold',color:'red'}}>Get Weather</IndexLink>
-            </li>
-            <li>
-              <Link to="/about" activeClassName="active" activeStyle={{fontWeight:'bold',color:'red'}}>About</Link>
-            </li>
-            <li>
-              <Link to="/examples" activeClassName="active" activeStyle={{fontWeight:'bold',color:'red'}}>Examples</Link>
-            </li>
-         </ul>
+            </div>
+            <div>
+              <IndexLink to="/" className="eachLink" activeClassName="active" activeStyle={{fontWeight:'bold',color:'red'}}>Get Weather</IndexLink>
+            </div>
+            <div>
+              <Link to="/about" className="eachLink" activeClassName="active" activeStyle={{fontWeight:'bold',color:'red'}}>About</Link>
+            </div>
+            <div>
+              <Link to="/examples" className="eachLink" activeClassName="active" activeStyle={{fontWeight:'bold',color:'red'}}>Examples</Link>
+            </div>
+
+         </div>
         </div>
         <div className="top-bar-right">
             <form onSubmit={this.onSearch}>

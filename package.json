@@ -26,6 +26,7 @@
     "foundation-sites": "^6.2.3",
     "jquery": "^2.2.1",
     "node-sass": "^3.8.0",
+    "nodemon": "^1.10.2",
     "sass-loader": "^4.0.0",
     "script-loader": "^0.7.0",
     "style-loader": "^0.13.1",

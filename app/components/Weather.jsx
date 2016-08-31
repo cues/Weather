@@ -28,10 +28,14 @@ var Weather = React.createClass({
       icon: undefined
     });
 
-    openWeatherMap.getTemp(location).then(function(temp){
+    openWeatherMap.getWeather(location).then(function(weather){
       that.setState({
         location: location,
-        temp: temp,
+        temp: weather.temp,
+          humidity: weather.humidity,
+            description: weather.description,
+            clouds: weather.clouds,
+            icon: weather.icon,
         isLoading: false,
       });
     }, function(e){
@@ -41,57 +45,57 @@ var Weather = React.createClass({
       });
     });
 
-    openWeatherMap.getHumidity(location).then(function(humidity){
-      that.setState({
-        location: location,
-        humidity: humidity,
-        isLoading: false,
-      });
-    }, function(e){
-      that.setState({
-        isLoading:false,
-        errorMessage: e.message
-      });
-    });
-
-    openWeatherMap.getDescription(location).then(function(description){
-      that.setState({
-        location: location,
-        description: description,
-        isLoading: false,
-      });
-    }, function(e){
-      that.setState({
-        isLoading:false,
-        errorMessage: e.message
-      });
-    });
-
-    openWeatherMap.getClouds(location).then(function(clouds){
-      that.setState({
-        location: location,
-        clouds: clouds,
-        isLoading: false,
-      });
-    }, function(e){
-      that.setState({
-        isLoading:false,
-        errorMessage: e.message
-      });
-    });
-
-    openWeatherMap.getIcon(location).then(function(icon){
-      that.setState({
-        location: location,
-        icon: icon,
-        isLoading: false,
-      });
-    }, function(e){
-      that.setState({
-        isLoading:false,
-        errorMessage: e.message
-      });
-    });
+    // openWeatherMap.getHumidity(location).then(function(humidity){
+    //   that.setState({
+    //     location: location,
+    //     humidity: humidity,
+    //     isLoading: false,
+    //   });
+    // }, function(e){
+    //   that.setState({
+    //     isLoading:false,
+    //     errorMessage: e.message
+    //   });
+    // });
+    //
+    // openWeatherMap.getDescription(location).then(function(description){
+    //   that.setState({
+    //     location: location,
+    //     description: description,
+    //     isLoading: false,
+    //   });
+    // }, function(e){
+    //   that.setState({
+    //     isLoading:false,
+    //     errorMessage: e.message
+    //   });
+    // });
+    //
+    // openWeatherMap.getClouds(location).then(function(clouds){
+    //   that.setState({
+    //     location: location,
+    //     clouds: clouds,
+    //     isLoading: false,
+    //   });
+    // }, function(e){
+    //   that.setState({
+    //     isLoading:false,
+    //     errorMessage: e.message
+    //   });
+    // });
+    //
+    // openWeatherMap.getIcon(location).then(function(icon){
+    //   that.setState({
+    //     location: location,
+    //     icon: icon,
+    //     isLoading: false,
+    //   });
+    // }, function(e){
+    //   that.setState({
+    //     isLoading:false,
+    //     errorMessage: e.message
+    //   });
+    // });
     // this.setState({
     //   location : location,
     //   temp :23,
@@ -127,7 +131,7 @@ var Weather = React.createClass({
         if (isLoading){
           return <h3 className="text-center">Fetching Weather...</h3>;
         }
-        else if(temp && location){
+        else if(location){
           return <WeatherMessage location={location} temp={temp} humidity={humidity} description={description} icon={icon} clouds={clouds}/>;
 
         }

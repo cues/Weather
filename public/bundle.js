@@ -25250,37 +25250,37 @@
 	        'div',
 	        { className: 'top-bar-left' },
 	        React.createElement(
-	          'ul',
+	          'div',
 	          { className: 'menu' },
 	          React.createElement(
-	            'li',
-	            { className: 'menu-text cursor-default' },
+	            'div',
+	            { className: 'menu-text cursor-default app-name' },
 	            'React Weather App'
 	          ),
 	          React.createElement(
-	            'li',
+	            'div',
 	            null,
 	            React.createElement(
 	              IndexLink,
-	              { to: '/', activeClassName: 'active', activeStyle: { fontWeight: 'bold', color: 'red' } },
+	              { to: '/', className: 'eachLink', activeClassName: 'active', activeStyle: { fontWeight: 'bold', color: 'red' } },
 	              'Get Weather'
 	            )
 	          ),
 	          React.createElement(
-	            'li',
+	            'div',
 	            null,
 	            React.createElement(
 	              Link,
-	              { to: '/about', activeClassName: 'active', activeStyle: { fontWeight: 'bold', color: 'red' } },
+	              { to: '/about', className: 'eachLink', activeClassName: 'active', activeStyle: { fontWeight: 'bold', color: 'red' } },
 	              'About'
 	            )
 	          ),
 	          React.createElement(
-	            'li',
+	            'div',
 	            null,
 	            React.createElement(
 	              Link,
-	              { to: '/examples', activeClassName: 'active', activeStyle: { fontWeight: 'bold', color: 'red' } },
+	              { to: '/examples', className: 'eachLink', activeClassName: 'active', activeStyle: { fontWeight: 'bold', color: 'red' } },
 	              'Examples'
 	            )
 	          )
@@ -25351,10 +25351,14 @@
 	      icon: undefined
 	    });
 
-	    openWeatherMap.getTemp(location).then(function (temp) {
+	    openWeatherMap.getWeather(location).then(function (weather) {
 	      that.setState({
 	        location: location,
-	        temp: temp,
+	        temp: weather.temp,
+	        humidity: weather.humidity,
+	        description: weather.description,
+	        clouds: weather.clouds,
+	        icon: weather.icon,
 	        isLoading: false
 	      });
 	    }, function (e) {
@@ -25364,57 +25368,57 @@
 	      });
 	    });
 
-	    openWeatherMap.getHumidity(location).then(function (humidity) {
-	      that.setState({
-	        location: location,
-	        humidity: humidity,
-	        isLoading: false
-	      });
-	    }, function (e) {
-	      that.setState({
-	        isLoading: false,
-	        errorMessage: e.message
-	      });
-	    });
-
-	    openWeatherMap.getDescription(location).then(function (description) {
-	      that.setState({
-	        location: location,
-	        description: description,
-	        isLoading: false
-	      });
-	    }, function (e) {
-	      that.setState({
-	        isLoading: false,
-	        errorMessage: e.message
-	      });
-	    });
-
-	    openWeatherMap.getClouds(location).then(function (clouds) {
-	      that.setState({
-	        location: location,
-	        clouds: clouds,
-	        isLoading: false
-	      });
-	    }, function (e) {
-	      that.setState({
-	        isLoading: false,
-	        errorMessage: e.message
-	      });
-	    });
-
-	    openWeatherMap.getIcon(location).then(function (icon) {
-	      that.setState({
-	        location: location,
-	        icon: icon,
-	        isLoading: false
-	      });
-	    }, function (e) {
-	      that.setState({
-	        isLoading: false,
-	        errorMessage: e.message
-	      });
-	    });
+	    // openWeatherMap.getHumidity(location).then(function(humidity){
+	    //   that.setState({
+	    //     location: location,
+	    //     humidity: humidity,
+	    //     isLoading: false,
+	    //   });
+	    // }, function(e){
+	    //   that.setState({
+	    //     isLoading:false,
+	    //     errorMessage: e.message
+	    //   });
+	    // });
+	    //
+	    // openWeatherMap.getDescription(location).then(function(description){
+	    //   that.setState({
+	    //     location: location,
+	    //     description: description,
+	    //     isLoading: false,
+	    //   });
+	    // }, function(e){
+	    //   that.setState({
+	    //     isLoading:false,
+	    //     errorMessage: e.message
+	    //   });
+	    // });
+	    //
+	    // openWeatherMap.getClouds(location).then(function(clouds){
+	    //   that.setState({
+	    //     location: location,
+	    //     clouds: clouds,
+	    //     isLoading: false,
+	    //   });
+	    // }, function(e){
+	    //   that.setState({
+	    //     isLoading:false,
+	    //     errorMessage: e.message
+	    //   });
+	    // });
+	    //
+	    // openWeatherMap.getIcon(location).then(function(icon){
+	    //   that.setState({
+	    //     location: location,
+	    //     icon: icon,
+	    //     isLoading: false,
+	    //   });
+	    // }, function(e){
+	    //   that.setState({
+	    //     isLoading:false,
+	    //     errorMessage: e.message
+	    //   });
+	    // });
 	    // this.setState({
 	    //   location : location,
 	    //   temp :23,
@@ -25460,7 +25464,7 @@
 	          { className: 'text-center' },
 	          'Fetching Weather...'
 	        );
-	      } else if (temp && location) {
+	      } else if (location) {
 	        return React.createElement(WeatherMessage, { location: location, temp: temp, humidity: humidity, description: description, icon: icon, clouds: clouds });
 	      }
 	    }
@@ -25637,7 +25641,7 @@
 	// 5044a064047b2e4eda625e7fac363785
 
 	module.exports = {
-	  getTemp: function getTemp(location) {
+	  getWeather: function getWeather(location) {
 	    var encodedLocation = encodeURIComponent(location); /*this is going to properlly encode it to the browser*/
 	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /*every is executed as a regular jav script expression*/
 
@@ -25645,66 +25649,16 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.main.temp;
+	        return {
+	          temp: res.data.main.temp,
+	          humidity: res.data.main.humidity,
+	          description: res.data.weather[0].description,
+	          clouds: res.data.clouds.all,
+	          icon: res.data.weather[0].icon
+	        };
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
-	    });
-	  },
-	  getHumidity: function getHumidity(location) {
-	    var encodedLocation = encodeURIComponent(location); /*this is going to properlly encode it to the browser*/
-	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /*every is executed as a regular jav script expression*/
-
-	    return axios.get(requestUrl).then(function (ress) {
-	      if (ress.data.cod && ress.data.message) {
-	        throw new Error(ress.data.message);
-	      } else {
-	        return ress.data.main.humidity;
-	      }
-	    }, function (ress) {
-	      throw new Error(ress.data.message);
-	    });
-	  },
-	  getDescription: function getDescription(location) {
-	    var encodedLocation = encodeURIComponent(location); /*this is going to properlly encode it to the browser*/
-	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /*every is executed as a regular jav script expression*/
-
-	    return axios.get(requestUrl).then(function (des) {
-	      if (des.data.cod && des.data.message) {
-	        throw new Error(des.data.message);
-	      } else {
-	        return des.data.weather[0].description;
-	      }
-	    }, function (des) {
-	      throw new Error(des.data.message);
-	    });
-	  },
-	  getClouds: function getClouds(location) {
-	    var encodedLocation = encodeURIComponent(location); /*this is going to properlly encode it to the browser*/
-	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /*every is executed as a regular jav script expression*/
-
-	    return axios.get(requestUrl).then(function (clo) {
-	      if (clo.data.cod && clo.data.message) {
-	        throw new Error(clo.data.message);
-	      } else {
-	        return clo.data.clouds.all;
-	      }
-	    }, function (clo) {
-	      throw new Error(clo.data.message);
-	    });
-	  },
-	  getIcon: function getIcon(location) {
-	    var encodedLocation = encodeURIComponent(location); /*this is going to properlly encode it to the browser*/
-	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation; /*every is executed as a regular jav script expression*/
-
-	    return axios.get(requestUrl).then(function (ico) {
-	      if (ico.data.cod && ico.data.message) {
-	        throw new Error(ico.data.message);
-	      } else {
-	        return ico.data.weather[0].icon;
-	      }
-	    }, function (ico) {
-	      throw new Error(ico.data.message);
 	    });
 	  }
 	};
@@ -27587,7 +27541,7 @@
 
 
 	// module
-	exports.push([module.id, ".cursor-default {\n  cursor: default !important; }\n\n.page-title {\n  color: #eabf86;\n  margin-top: 30px;\n  margin-bottom: 30px; }\n\ninput[type=search], input[type=submit] {\n  box-shadow: none;\n  border-radius: 5px;\n  outline: none; }\n\n.button-form {\n  border-radius: 5px;\n  outline: none;\n  font-size: 22px;\n  height: 40px;\n  display: flex;\n  align-items: center !important;\n  padding: 0; }\n\n.nav-search {\n  max-width: 300px !important;\n  width: 300px; }\n\n.font, .page-title {\n  font-family: 'bitter'; }\n\n.top-bar {\n  background-color: rgba(250, 250, 250, 0.8);\n  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.6); }\n\n.top-bar ul {\n  background-color: transparent !important; }\n\n.row {\n  /*background-color: red;*/\n  height: calc(100vh - 60px);\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n@media (max-width: 962px) {\n  .row {\n    height: calc(100vh - 130px); } }\n\n.weather-location {\n  font-size: 30px;\n  text-transform: uppercase; }\n\n.weather-icon {\n  height: 70px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n.weather-image {\n  height: 60px;\n  width: 60px; }\n\n.weather-item, .weather-parameters {\n  float: left;\n  width: 50%; }\n\n.weather-eachItem, .weather-eachParameters {\n  height: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n", ""]);
+	exports.push([module.id, ".cursor-default {\n  cursor: default !important; }\n\n.page-title {\n  color: #eabf86;\n  margin-top: 30px;\n  margin-bottom: 30px; }\n\ninput[type=search], input[type=submit] {\n  box-shadow: none;\n  border-radius: 5px;\n  outline: none; }\n\n.button-form {\n  border-radius: 5px;\n  outline: none;\n  font-size: 22px;\n  height: 40px;\n  display: flex;\n  align-items: center !important;\n  padding: 0; }\n\n.nav-search {\n  max-width: 300px !important;\n  width: 300px; }\n\n.font, .page-title {\n  font-family: 'bitter'; }\n\n.top-bar {\n  background-color: rgba(250, 250, 250, 0.8);\n  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.6); }\n\n.top-bar ul {\n  background-color: transparent !important; }\n\n.row {\n  /*background-color: red;*/\n  min-height: calc(100vh - 60px);\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n\n.top-bar-left {\n  width: 50% !important; }\n\n.menu {\n  float: left;\n  width: 100%; }\n\n.app-name, .eachLink {\n  float: left;\n  height: 55px !important;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 25%; }\n\n@media (max-width: 962px) {\n  .row {\n    min-height: calc(100vh - 150px); }\n  .top-bar-left, .top-bar-right {\n    width: 100% !important; }\n  .top-bar-right {\n    margin-top: 20px;\n    margin-bottom: 20px;\n    display: flex;\n    align-items: center;\n    justify-content: center; } }\n\n@media (max-width: 500px) {\n  .row {\n    min-height: calc(100vh - 210px); }\n  .app-name {\n    width: 100%;\n    float: left; }\n  .eachLink {\n    width: 32%;\n    float: left;\n    margin-left: 1%; }\n  .top-bar-right {\n    display: none; }\n  .nav-search {\n    width: 140px; } }\n\n.weather-location {\n  font-size: 30px;\n  text-transform: uppercase; }\n\n.weather-icon {\n  height: 70px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n.weather-image {\n  height: 60px;\n  width: 60px; }\n\n.weather-item, .weather-parameters {\n  float: left;\n  width: 50%; }\n\n.weather-eachItem, .weather-eachParameters {\n  height: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n", ""]);
 
 	// exports
 

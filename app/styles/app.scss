@@ -54,18 +54,77 @@ input[type=search], input[type=submit]
 .row
 {
   /*background-color: red;*/
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
   display: flex;
   align-items: center;
   justify-content: center;
 
 }
+
+.top-bar-left
+{
+  // background-color: red;
+  width: 50% !important;
+}
+.menu
+{
+  float: left;
+  // background-color: blue;
+  width: 100%;
+}
+.app-name, .eachLink
+{
+  float: left;
+  height: 55px !important;
+  // background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+}
 @media(max-width:962px){
   .row{
-    height: calc(100vh - 130px)
+    min-height: calc(100vh - 150px)
+  }
+  .top-bar-left, .top-bar-right
+  {
+    width: 100% !important
+  }
+  .top-bar-right
+  {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
-
+@media(max-width:500px){
+  .row{
+    min-height: calc(100vh - 210px)
+  }
+  .app-name
+  {
+    width: 100%;
+    // background-color: red;
+    float: left;
+  }
+  .eachLink
+  {
+    width: 32%;
+    float: left;
+    margin-left: 1%;
+    // background-color: blue
+ }
+  .top-bar-right
+  {
+    display: none
+  }
+ .nav-search
+ {
+   width: 140px;
+ }
+}
 
 
 .weather-location
