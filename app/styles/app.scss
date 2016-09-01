@@ -1,6 +1,14 @@
 $space-30: 30px;
 $page-title-color: rgba(234,191,134,1);
 
+.row
+{
+  background-image: url(/app/Images/white.png);
+  -webkit-transform: translateZ(0);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .cursor-default
 {
   cursor: default !important;
